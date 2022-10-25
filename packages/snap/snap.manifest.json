@@ -1,13 +1,13 @@
 {
   "version": "0.1.0",
   "description": "An example Snap written in TypeScript.",
-  "proposedName": "TypeScript Example Snap",
+  "proposedName": "Chain Prompter",
   "repository": {
     "type": "git",
     "url": "https://github.com/MetaMask/template-snap-monorepo.git"
   },
   "source": {
-    "shasum": "naL9tJT7QHAFER/TGfTcjwUFZUMhrsWY5f8XqX28M/g=",
+    "shasum": "DrSZxDz7A0RLVXM3MLJ8Cf0ZforckFqBwKFp/+Zphaw=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
@@ -18,7 +18,9 @@
     }
   },
   "initialPermissions": {
-    "snap_confirm": {}
+    "snap_confirm": {},
+    "endowment:network-access": {},
+    "endowment:transaction-insight": {}
   },
   "manifestVersion": "0.1"
 }
