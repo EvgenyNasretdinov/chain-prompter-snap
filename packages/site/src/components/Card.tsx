@@ -2,11 +2,9 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 type CardProps = {
-  content: {
-    title: string;
-    description: string;
-    button: ReactNode;
-  };
+  children: ReactNode;
+  title: string;
+  button?: ReactNode;
   disabled?: boolean;
   fullWidth?: boolean;
 };
@@ -19,7 +17,7 @@ const CardWrapper = styled.div<{ fullWidth?: boolean; disabled: boolean }>`
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
   padding: 2.4rem;
-  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  // border: 1px solid ${({ theme }) => theme.colors.border.default};
   border-radius: ${({ theme }) => theme.radii.default};
   box-shadow: ${({ theme }) => theme.shadows.default};
   filter: opacity(${({ disabled }) => (disabled ? '.4' : '1')});
@@ -45,12 +43,11 @@ const Description = styled.p`
   margin-bottom: 2.4rem;
 `;
 
-export const Card = ({ content, disabled = false, fullWidth }: CardProps) => {
-  const { title, description, button } = content;
+export const Card = ({ title, button, disabled = false, fullWidth, children }: CardProps) => {
   return (
     <CardWrapper fullWidth={fullWidth} disabled={disabled}>
       <Title>{title}</Title>
-      <Description>{description}</Description>
+      <Description>{children}</Description>
       {button}
     </CardWrapper>
   );
