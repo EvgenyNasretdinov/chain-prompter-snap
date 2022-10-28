@@ -5,6 +5,7 @@ import { MetamaskActions, MetaMaskContext } from '../hooks';
 import {
   connectSnap,
   getSnap,
+  getThemePreference,
   shouldDisplayReconnectButton,
 } from '../utils';
 import {
@@ -51,24 +52,6 @@ const CardContainer = styled.div`
   margin-top: 1.5rem;
 `;
 
-const Notice = styled.div`
-  background-color: ${({ theme }) => theme.colors.background.alternative};
-  color: ${({ theme }) => theme.colors.text.alternative};
-  border-radius: ${({ theme }) => theme.radii.default};
-  padding: 2.4rem;
-  margin-top: 2.4rem;
-  max-width: 60rem;
-  width: 100%;
-
-  & > * {
-    margin: 0;
-  }
-  ${({ theme }) => theme.mediaQueries.small} {
-    margin-top: 1.2rem;
-    padding: 1.6rem;
-  }
-`;
-
 const ErrorMessage = styled.div`
   background-color: ${({ theme }) => theme.colors.error.muted};
   border: 1px solid ${({ theme }) => theme.colors.error.default};
@@ -89,7 +72,7 @@ const ErrorMessage = styled.div`
 
 export const Home = () => {
   const [state, dispatch] = useContext(MetaMaskContext);
-
+  const darkMode = getThemePreference()
   const handleConnectClick = async () => {
     try {
       await connectSnap();
@@ -160,8 +143,21 @@ export const Home = () => {
           fullWidth
         >
           <Stack direction='row' justifyContent='space-between' spacing={1}>
-            <Input fullWidth type='text' placeholder='tx hash' />
-            <Button variant='contained' onClick={() => console.log('API')}>Translate</Button>
+            <Input sx={{ color: darkMode ? '#fff' : '#000', fontSize: '1em' }} fullWidth type='text' placeholder='tx hash' />
+            <Button
+              variant='contained'
+              onClick={() => console.log('API')}
+              sx={{
+                color: darkMode ? '#000' : '#fff',
+                background: darkMode ? '#fff' : '#000',
+                fontSize: '0.7em',
+                fontWeight: '600',
+                borderRadius: '0.75rem',
+                ':hover': {
+                  background: 'transparent'
+                },
+              }}
+            >Translate</Button>
           </Stack>
         </Card>
       </CardContainer>
