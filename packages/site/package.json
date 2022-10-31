@@ -2,6 +2,7 @@
   "name": "site",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "license": "(MIT-0 OR Apache-2.0)",
   "scripts": {
     "build": "react-scripts build",
@@ -14,7 +15,6 @@
     "start": "react-scripts start",
     "test": "react-scripts test"
   },
-  "homepage": ".",
   "browserslist": {
     "production": [
       ">0.2%",
