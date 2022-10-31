@@ -4,7 +4,7 @@ import { Footer, Header, Home } from './components';
 import { MetaMaskProvider } from './hooks';
 
 import { light, dark, GlobalStyle } from './config/theme';
-import { setLocalStorage, getThemePreference } from './utils';
+import { getThemePreference } from './utils';
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,19 +15,19 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  const [darkTheme, setDarkTheme] = useState(getThemePreference());
+  const [darkTheme] = useState(getThemePreference());
 
-  const toggleTheme = () => {
-    setLocalStorage('theme', darkTheme ? 'light' : 'dark');
-    setDarkTheme(!darkTheme);
-  };
+  // const toggleTheme = () => {
+  //   setLocalStorage('theme', darkTheme ? 'light' : 'dark');
+  //   setDarkTheme(!darkTheme);
+  // };
 
   return (
     <ThemeProvider theme={darkTheme ? dark : light}>
       <MetaMaskProvider>
         <GlobalStyle />
         <Wrapper>
-          <Header handleToggleClick={toggleTheme} />
+          <Header />
           <Home />
           <Footer />
         </Wrapper>
