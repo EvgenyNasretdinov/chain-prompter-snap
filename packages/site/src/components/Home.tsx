@@ -1,18 +1,14 @@
+import { Button, Input, Stack } from '@mui/material';
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { MetamaskActions, MetaMaskContext } from '../hooks';
 import {
   connectSnap,
   getSnap,
-  sendHello,
+  getThemePreference,
   shouldDisplayReconnectButton,
 } from '../utils';
-import {
-  ConnectButton,
-  InstallFlaskButton,
-  ReconnectButton,
-  SendHelloButton,
-} from './Buttons';
+import { ConnectButton, InstallFlaskButton, ReconnectButton } from './Buttons';
 import { Card } from './Card';
 
 const Container = styled.div`
@@ -41,16 +37,6 @@ const Span = styled.span`
   color: ${(props) => props.theme.colors.primary.default};
 `;
 
-const Subtitle = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.large};
-  font-weight: 500;
-  margin-top: 0;
-  margin-bottom: 0;
-  ${({ theme }) => theme.mediaQueries.small} {
-    font-size: ${({ theme }) => theme.fontSizes.text};
-  }
-`;
-
 const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -60,25 +46,6 @@ const CardContainer = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 1.5rem;
-`;
-
-const Notice = styled.div`
-  background-color: ${({ theme }) => theme.colors.background.alternative};
-  border: 1px solid ${({ theme }) => theme.colors.border.default};
-  color: ${({ theme }) => theme.colors.text.alternative};
-  border-radius: ${({ theme }) => theme.radii.default};
-  padding: 2.4rem;
-  margin-top: 2.4rem;
-  max-width: 60rem;
-  width: 100%;
-
-  & > * {
-    margin: 0;
-  }
-  ${({ theme }) => theme.mediaQueries.small} {
-    margin-top: 1.2rem;
-    padding: 1.6rem;
-  }
 `;
 
 const ErrorMessage = styled.div`
@@ -101,7 +68,7 @@ const ErrorMessage = styled.div`
 
 export const Home = () => {
   const [state, dispatch] = useContext(MetaMaskContext);
-
+  const darkMode = getThemePreference();
   const handleConnectClick = async () => {
     try {
       await connectSnap();
@@ -117,95 +84,84 @@ export const Home = () => {
     }
   };
 
-  const handleSendHelloClick = async () => {
-    try {
-      await sendHello();
-    } catch (e) {
-      console.error(e);
-      dispatch({ type: MetamaskActions.SetError, payload: e });
-    }
-  };
-
   return (
     <Container>
       <Heading>
-        Welcome to <Span>template-snap</Span>
+        Welcome to <Span>Chain Prompter</Span>
       </Heading>
-      <Subtitle>
-        Get started by editing <code>src/index.ts</code>
-      </Subtitle>
       <CardContainer>
         {state.error && (
           <ErrorMessage>
             <b>An error happened:</b> {state.error.message}
           </ErrorMessage>
         )}
-        {!state.isFlask && (
-          <Card
-            content={{
-              title: 'Install',
-              description:
-                'Snaps is pre-release software only available in MetaMask Flask, a canary distribution for developers with access to upcoming features.',
-              button: <InstallFlaskButton />,
-            }}
-            fullWidth
-          />
-        )}
+        <Card
+          title={'1. Install MetaMask Flask'}
+          button={<InstallFlaskButton />}
+          disabled={state.isFlask}
+          fullWidth={false}
+        >
+          Snaps is pre-release software only available in MetaMask Flask, a
+          canary distribution for developers with access to upcoming features.
+        </Card>
         {!state.installedSnap && (
           <Card
-            content={{
-              title: 'Connect',
-              description:
-                'Get started by connecting to and installing the example snap.',
-              button: (
-                <ConnectButton
-                  onClick={handleConnectClick}
-                  disabled={!state.isFlask}
-                />
-              ),
-            }}
+            title={'2. Connect and Install'}
+            button={
+              <ConnectButton
+                onClick={handleConnectClick}
+                disabled={!state.isFlask}
+              />
+            }
+            fullWidth={false}
             disabled={!state.isFlask}
-          />
+          >
+            Get started by connecting to and installing Chain Prompter!
+          </Card>
         )}
         {shouldDisplayReconnectButton(state.installedSnap) && (
           <Card
-            content={{
-              title: 'Reconnect',
-              description:
-                'While connected to a local running snap this button will always be displayed in order to update the snap if a change is made.',
-              button: (
-                <ReconnectButton
-                  onClick={handleConnectClick}
-                  disabled={!state.installedSnap}
-                />
-              ),
-            }}
-            disabled={!state.installedSnap}
-          />
-        )}
-        <Card
-          content={{
-            title: 'Send Hello message',
-            description:
-              'Display a custom message within a confirmation screen in MetaMask.',
-            button: (
-              <SendHelloButton
-                onClick={handleSendHelloClick}
-                disabled={false}
+            title={'Reconnect'}
+            button={
+              <ReconnectButton
+                onClick={handleConnectClick}
+                disabled={!state.installedSnap}
               />
-            ),
-          }}
-          disabled={false}
-          fullWidth={false}
-        />
-        <Notice>
-          <p>
-            Please note that the <b>snap.manifest.json</b> and{' '}
-            <b>package.json</b> must be located in the server root directory and
-            the bundle must be hosted at the location specified by the location
-            field.
-          </p>
-        </Notice>
+            }
+            fullWidth
+            disabled={!state.installedSnap}
+          >
+            While connected to a local running snap this button will always be
+            displayed in order to update the snap if a change is made.
+          </Card>
+        )}
+
+        <Card title={'Reconnect'} fullWidth>
+          <Stack direction="row" justifyContent="space-between" spacing={1}>
+            <Input
+              sx={{ color: darkMode ? '#fff' : '#000', fontSize: '1em' }}
+              fullWidth
+              type="text"
+              placeholder="tx hash"
+            />
+            <Button
+              variant="contained"
+              onClick={() => console.log('API')}
+              sx={{
+                color: darkMode ? '#000' : '#fff',
+                background: darkMode ? '#fff' : '#000',
+                fontSize: '0.7em',
+                fontWeight: '600',
+                borderRadius: '0.75rem',
+                ':hover': {
+                  background: 'transparent',
+                },
+              }}
+            >
+              Translate
+            </Button>
+          </Stack>
+        </Card>
       </CardContainer>
     </Container>
   );
