@@ -8,11 +8,7 @@ import {
   getThemePreference,
   shouldDisplayReconnectButton,
 } from '../utils';
-import {
-  ConnectButton,
-  InstallFlaskButton,
-  ReconnectButton,
-} from './Buttons';
+import { ConnectButton, InstallFlaskButton, ReconnectButton } from './Buttons';
 import { Card } from './Card';
 
 const Container = styled.div`
@@ -72,7 +68,7 @@ const ErrorMessage = styled.div`
 
 export const Home = () => {
   const [state, dispatch] = useContext(MetaMaskContext);
-  const darkMode = getThemePreference()
+  const darkMode = getThemePreference();
   const handleConnectClick = async () => {
     try {
       await connectSnap();
@@ -105,7 +101,8 @@ export const Home = () => {
           disabled={state.isFlask}
           fullWidth={false}
         >
-          Snaps is pre-release software only available in MetaMask Flask, a canary distribution for developers with access to upcoming features.
+          Snaps is pre-release software only available in MetaMask Flask, a
+          canary distribution for developers with access to upcoming features.
         </Card>
         {!state.installedSnap && (
           <Card
@@ -134,18 +131,21 @@ export const Home = () => {
             fullWidth
             disabled={!state.installedSnap}
           >
-            While connected to a local running snap this button will always be displayed in order to update the snap if a change is made.
+            While connected to a local running snap this button will always be
+            displayed in order to update the snap if a change is made.
           </Card>
         )}
 
-        <Card
-          title={'Reconnect'}
-          fullWidth
-        >
-          <Stack direction='row' justifyContent='space-between' spacing={1}>
-            <Input sx={{ color: darkMode ? '#fff' : '#000', fontSize: '1em' }} fullWidth type='text' placeholder='tx hash' />
+        <Card title={'Reconnect'} fullWidth>
+          <Stack direction="row" justifyContent="space-between" spacing={1}>
+            <Input
+              sx={{ color: darkMode ? '#fff' : '#000', fontSize: '1em' }}
+              fullWidth
+              type="text"
+              placeholder="tx hash"
+            />
             <Button
-              variant='contained'
+              variant="contained"
               onClick={() => console.log('API')}
               sx={{
                 color: darkMode ? '#000' : '#fff',
@@ -154,10 +154,12 @@ export const Home = () => {
                 fontWeight: '600',
                 borderRadius: '0.75rem',
                 ':hover': {
-                  background: 'transparent'
+                  background: 'transparent',
                 },
               }}
-            >Translate</Button>
+            >
+              Translate
+            </Button>
           </Stack>
         </Card>
       </CardContainer>
