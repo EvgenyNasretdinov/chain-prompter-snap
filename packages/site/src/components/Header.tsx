@@ -1,10 +1,10 @@
+import { Stack } from '@mui/material';
 import { useContext } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { MetamaskActions, MetaMaskContext } from '../hooks';
-import { connectSnap, getThemePreference, getSnap } from '../utils';
+import { connectSnap, getSnap } from '../utils';
 import { HeaderButtons } from './Buttons';
-import { SnapLogo } from './SnapLogo';
-import { Toggle } from './Toggle';
+// import { SnapLogo } from './SnapLogo';
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -29,6 +29,10 @@ const LogoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  border-radius: 25px;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
 `;
 
 const RightContainer = styled.div`
@@ -37,12 +41,7 @@ const RightContainer = styled.div`
   align-items: center;
 `;
 
-export const Header = ({
-  handleToggleClick,
-}: {
-  handleToggleClick(): void;
-}) => {
-  const theme = useTheme();
+export const Header = () => {
   const [state, dispatch] = useContext(MetaMaskContext);
 
   const handleConnectClick = async () => {
@@ -61,15 +60,17 @@ export const Header = ({
   };
   return (
     <HeaderWrapper>
-      <LogoWrapper>
-        <SnapLogo color={theme.colors.icon.default} size={36} />
+      <Stack direction="row" alignItems="center">
+        <LogoWrapper>
+          <img src="/ChP-logo.jpeg" width="100%" loading="lazy" />
+        </LogoWrapper>
         <Title>Chain Prompter</Title>
-      </LogoWrapper>
+      </Stack>
       <RightContainer>
-        <Toggle
+        {/* <Toggle
           onToggle={handleToggleClick}
           defaultChecked={getThemePreference()}
-        />
+        /> */}
         <HeaderButtons state={state} onConnectClick={handleConnectClick} />
       </RightContainer>
     </HeaderWrapper>

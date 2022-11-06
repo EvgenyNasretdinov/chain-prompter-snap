@@ -16,7 +16,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-  margin-top: 7.6rem;
+  // margin-top: 7.6rem;
   margin-bottom: 7.6rem;
   ${({ theme }) => theme.mediaQueries.small} {
     padding-left: 2.4rem;
@@ -27,7 +27,30 @@ const Container = styled.div`
   }
 `;
 
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6rem;
+  // margin-bottom: 7.6rem;
+  // min-width: 100vw;
+  // min-height: 100vh;
+  width: 100vw;
+  height: 75vh;
+  ${({ theme }) => theme.mediaQueries.small} {
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: auto;
+  }
+`;
+
 const Heading = styled.h1`
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
   margin-top: 0;
   margin-bottom: 2.4rem;
   text-align: center;
@@ -86,9 +109,20 @@ export const Home = () => {
 
   return (
     <Container>
-      <Heading>
-        Welcome to <Span>Chain Prompter</Span>
-      </Heading>
+      {/* <LogoWrapper>
+        <img
+          src='/ChP-logo.jpeg'
+          width='100%'
+          // height='100%'
+          loading="lazy"
+        />
+      </LogoWrapper> */}
+      <PageContainer>
+        <Heading>
+          Welcome to <Span>Chain Prompter</Span>
+        </Heading>
+      </PageContainer>
+
       <CardContainer>
         {state.error && (
           <ErrorMessage>
@@ -97,28 +131,26 @@ export const Home = () => {
         )}
         <Card
           title={'1. Install MetaMask Flask'}
-          button={<InstallFlaskButton />}
+          button={<InstallFlaskButton disabled={state.isFlask} />}
           disabled={state.isFlask}
           fullWidth={false}
         >
           Snaps is pre-release software only available in MetaMask Flask, a
           canary distribution for developers with access to upcoming features.
         </Card>
-        {!state.installedSnap && (
-          <Card
-            title={'2. Connect and Install'}
-            button={
-              <ConnectButton
-                onClick={handleConnectClick}
-                disabled={!state.isFlask}
-              />
-            }
-            fullWidth={false}
-            disabled={!state.isFlask}
-          >
-            Get started by connecting to and installing Chain Prompter!
-          </Card>
-        )}
+        <Card
+          title={'2. Connect and Install'}
+          button={
+            <ConnectButton
+              onClick={handleConnectClick}
+              disabled={!state.isFlask || state.installedSnap}
+            />
+          }
+          fullWidth={false}
+          disabled={!state.isFlask || !!state.installedSnap}
+        >
+          Get started by connecting to and installing Chain Prompter!
+        </Card>
         {shouldDisplayReconnectButton(state.installedSnap) && (
           <Card
             title={'Reconnect'}

@@ -1,7 +1,8 @@
-import styled, { useTheme } from 'styled-components';
-import { ReactComponent as MetaMaskFox } from '../assets/metamask_fox.svg';
-import { MetaMask } from './MetaMask';
-import { PoweredBy } from './PoweredBy';
+import { Icon, Stack } from '@mui/material';
+import styled from 'styled-components';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import EmailIcon from '@mui/icons-material/Email';
 
 const FooterWrapper = styled.footer`
   display: flex;
@@ -13,35 +14,31 @@ const FooterWrapper = styled.footer`
   border-top: 1px solid ${(props) => props.theme.colors.border.default};
 `;
 
-const PoweredByButton = styled.a`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 1.2rem;
-  border-radius: ${({ theme }) => theme.radii.button};
-  box-shadow: ${({ theme }) => theme.shadows.button};
-  background-color: ${({ theme }) => theme.colors.background.alternative};
-`;
-
-const PoweredByContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 1rem;
-`;
-
 export const Footer = () => {
-  const theme = useTheme();
-
   return (
     <FooterWrapper>
-      <PoweredByButton href="https://docs.metamask.io/" target="_blank">
-        <MetaMaskFox />
-        <PoweredByContainer>
-          <PoweredBy color={theme.colors.text.muted} />
-          <MetaMask color={theme.colors.text.default} />
-        </PoweredByContainer>
-      </PoweredByButton>
+      <Stack direction="row" spacing="1rem">
+        <a target="_blank" href="https://twitter.com/chainprompter">
+          <TwitterIcon sx={{ fontSize: '3rem', color: '#ffffff' }} />
+        </a>
+        <a target="_blank" href="https://t.me/evzhen">
+          <TelegramIcon
+            target="_blank"
+            sx={{ fontSize: '3rem', color: '#ffffff' }}
+          />
+        </a>
+        <a target="_blank" href="mailto:evgeny.nasretdinov@gmail.com">
+          <EmailIcon
+            target="_blank"
+            sx={{ fontSize: '3rem', color: '#ffffff' }}
+          />
+        </a>
+        <Icon sx={{ fontSize: '3rem' }}>
+          <a href="https://matrix.to/#/@evzhen.:matrix.org" target="_blank">
+            <img src="/matrix.svg" />
+          </a>
+        </Icon>
+      </Stack>
     </FooterWrapper>
   );
 };
