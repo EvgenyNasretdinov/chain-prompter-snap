@@ -1,8 +1,6 @@
 import { Icon, Stack } from '@mui/material';
 import styled from 'styled-components';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import EmailIcon from '@mui/icons-material/Email';
+import { Email, Telegram, Twitter } from '@mui/icons-material';
 
 const FooterWrapper = styled.footer`
   display: flex;
@@ -19,19 +17,16 @@ export const Footer = () => {
     <FooterWrapper>
       <Stack direction="row" spacing="1rem">
         <a target="_blank" href="https://twitter.com/chainprompter">
-          <TwitterIcon sx={{ fontSize: '3rem', color: '#ffffff' }} />
+          <Twitter sx={{ fontSize: '3rem', color: '#ffffff' }} />
         </a>
         <a target="_blank" href="https://t.me/evzhen">
-          <TelegramIcon
+          <Telegram
             target="_blank"
             sx={{ fontSize: '3rem', color: '#ffffff' }}
           />
         </a>
         <a target="_blank" href="mailto:evgeny.nasretdinov@gmail.com">
-          <EmailIcon
-            target="_blank"
-            sx={{ fontSize: '3rem', color: '#ffffff' }}
-          />
+          <Email target="_blank" sx={{ fontSize: '3rem', color: '#ffffff' }} />
         </a>
         <Icon sx={{ fontSize: '3rem' }}>
           <a href="https://matrix.to/#/@evzhen.:matrix.org" target="_blank">

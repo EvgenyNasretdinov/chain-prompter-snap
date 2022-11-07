@@ -14013,6 +14013,7 @@ __metadata:
     "@metamask/eslint-config-nodejs": ^10.0.0
     "@metamask/eslint-config-typescript": ^10.0.0
     "@metamask/providers": ^9.0.0
+    "@mui/icons-material": ^5.10.9
     "@mui/material": ^5.10.11
     "@testing-library/dom": ^8.17.1
     "@testing-library/jest-dom": ^5.16.4

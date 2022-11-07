@@ -147,7 +147,7 @@ export const Home = () => {
             />
           }
           fullWidth={false}
-          disabled={!state.isFlask || !!state.installedSnap}
+          disabled={!state.isFlask || Boolean(state.installedSnap)}
         >
           Get started by connecting to and installing Chain Prompter!
         </Card>
