@@ -69,12 +69,18 @@ const ConnectedIndicator = styled.div`
   background-color: green;
 `;
 
-export const InstallFlaskButton = () => (
-  <Link href="https://metamask.io/flask/" target="_blank">
-    <FlaskFox />
-    <ButtonText>Install MetaMask Flask</ButtonText>
-  </Link>
-);
+export const InstallFlaskButton = (props: ComponentProps<typeof Button>) =>
+  !props.disabled ? (
+    <Link href="https://metamask.io/flask/" target="_blank">
+      <FlaskFox />
+      <ButtonText>Install MetaMask Flask</ButtonText>
+    </Link>
+  ) : (
+    <Button {...props}>
+      <FlaskFox />
+      <ButtonText>Install MetaMask Flask</ButtonText>
+    </Button>
+  );
 
 export const ConnectButton = (props: ComponentProps<typeof Button>) => {
   return (

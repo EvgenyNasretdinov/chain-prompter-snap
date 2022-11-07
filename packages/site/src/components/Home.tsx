@@ -131,28 +131,26 @@ export const Home = () => {
         )}
         <Card
           title={'1. Install MetaMask Flask'}
-          button={<InstallFlaskButton />}
+          button={<InstallFlaskButton disabled={state.isFlask} />}
           disabled={state.isFlask}
           fullWidth={false}
         >
           Snaps is pre-release software only available in MetaMask Flask, a
           canary distribution for developers with access to upcoming features.
         </Card>
-        {!state.installedSnap && (
-          <Card
-            title={'2. Connect and Install'}
-            button={
-              <ConnectButton
-                onClick={handleConnectClick}
-                disabled={!state.isFlask}
-              />
-            }
-            fullWidth={false}
-            disabled={!state.isFlask}
-          >
-            Get started by connecting to and installing Chain Prompter!
-          </Card>
-        )}
+        <Card
+          title={'2. Connect and Install'}
+          button={
+            <ConnectButton
+              onClick={handleConnectClick}
+              disabled={!state.isFlask || state.installedSnap}
+            />
+          }
+          fullWidth={false}
+          disabled={!state.isFlask || !!state.installedSnap}
+        >
+          Get started by connecting to and installing Chain Prompter!
+        </Card>
         {shouldDisplayReconnectButton(state.installedSnap) && (
           <Card
             title={'Reconnect'}
