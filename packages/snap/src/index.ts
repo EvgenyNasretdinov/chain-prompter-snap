@@ -1,6 +1,6 @@
 import { OnTransactionHandler } from '@metamask/snap-types';
 
-const CHAIN_PROMPTER_API_ENDPOINT = 'https://hrtx-svfl63fyhq-lm.a.run.app';
+const CHAIN_PROMPTER_API_ENDPOINT = 'https://api.chainprompter.com';
 
 export const onTransaction: OnTransactionHandler = async ({
   transaction,

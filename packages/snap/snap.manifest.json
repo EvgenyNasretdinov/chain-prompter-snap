@@ -1,5 +1,5 @@
 {
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Human Readable transactions by Chain Prompter API",
   "proposedName": "Chain Prompter",
   "repository": {
@@ -7,7 +7,7 @@
     "url": "https://github.com/EvgenyNasretdinov/chain-prompter-snap"
   },
   "source": {
-    "shasum": "DrSZxDz7A0RLVXM3MLJ8Cf0ZforckFqBwKFp/+Zphaw=",
+    "shasum": "8Jy3UTEsc9uAEwwXlbbG+sE5a6Bh7ctFiatf0Ap1g00=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",

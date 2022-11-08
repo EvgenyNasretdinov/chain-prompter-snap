@@ -1,7 +1,7 @@
 {
   "name": "chain-prompter-snap",
-  "version": "0.1.2",
-  "description": "The 'Hello, world!' of MetaMask Snaps, now written in TypeScript.",
+  "version": "0.1.4",
+  "description": "Transaction insights using Chain Prompter API, allowing to have human readable descriptions of SC methods",
   "repository": {
     "type": "git",
     "url": "https://github.com/EvgenyNasretdinov/chain-prompter-snap"
