@@ -12,7 +12,8 @@ const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 2.4rem;
-  border-bottom: 1px solid ${(props) => props.theme.colors.border.default};
+  background-color: ${(props) => props.theme.colors.header.default};
+  border-bottom: 0px solid ${(props) => props.theme.colors.border.default};
 `;
 
 const Title = styled.p`
@@ -62,9 +63,9 @@ export const Header = () => {
     <HeaderWrapper>
       <Stack direction="row" alignItems="center">
         <LogoWrapper>
-          <img src="/ChP-logo.jpeg" width="100%" loading="lazy" />
+          <img src="/logo.png" width="100%" loading="lazy" />
         </LogoWrapper>
-        <Title>Chain Prompter</Title>
+        <Title>Chain Prompter ✺</Title>
       </Stack>
       <RightContainer>
         {/* <Toggle

@@ -2,13 +2,8 @@ import { Button, Input, Stack } from '@mui/material';
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { MetamaskActions, MetaMaskContext } from '../hooks';
-import {
-  connectSnap,
-  getSnap,
-  getThemePreference,
-  shouldDisplayReconnectButton,
-} from '../utils';
-import { ConnectButton, InstallFlaskButton, ReconnectButton } from './Buttons';
+import { connectSnap, getSnap, getThemePreference } from '../utils';
+import { ConnectButton, InstallFlaskButton } from './Buttons';
 import { Card } from './Card';
 
 const Container = styled.div`
@@ -118,9 +113,38 @@ export const Home = () => {
         />
       </LogoWrapper> */}
       <PageContainer>
+        ﹀\_︿╱﹀╲/╲︿_/︺\_︿╱▔︺\/\︹▁╱﹀▔╲︿_/︺▔╲▁︹_/
         <Heading>
-          Welcome to <Span>Chain Prompter</Span>
+          {/* Welcome to <Span>Chain Prompter</Span> */}
+          Welcome<Span>!</Span>
         </Heading>
+        ﹀▔\⁄﹀\╱﹀▔︺\︹▁︿╱\╱﹀▔╲︿_︿︹_/▔﹀\_︿╱
+        <CardContainer>
+          <Card
+            title={
+              'Chain Prompter is here to help you understand blockchain transactions! 🌱'
+            }
+            fullWidth={true}
+          >
+            The idea is to make blockchain accessible for everyone. You don't
+            need to understand coding or math, to be able to interact with
+            blockchain Dapps and to know what logic is running underneath. Even
+            on a new Smart contracts, that don't have a propper documentation
+            yet, you should be able to understand a high-level concept of what
+            the code is about to do.
+            <br />
+            <br />
+            With the help of GPT-3 and our own models, we are capable of
+            translating and summarizing the programming code into human's text.
+            By parsing transaction data, we are able to know what interaction
+            with the SC is going to happen, and, when the AI can describe us the
+            programming code, we can describe the user what will happen (or
+            happend) on the onchain layer.
+            <br />
+            <br />
+            Scroll down to try it yourself! ⬇️ ⬇️ ⬇️
+          </Card>
+        </CardContainer>
       </PageContainer>
 
       <CardContainer>
@@ -149,26 +173,9 @@ export const Home = () => {
           fullWidth={false}
           disabled={!state.isFlask || Boolean(state.installedSnap)}
         >
-          Get started by connecting to and installing Chain Prompter!
+          Get started by connecting to and installing Chain Prompter snap!
         </Card>
-        {shouldDisplayReconnectButton(state.installedSnap) && (
-          <Card
-            title={'Reconnect'}
-            button={
-              <ReconnectButton
-                onClick={handleConnectClick}
-                disabled={!state.installedSnap}
-              />
-            }
-            fullWidth
-            disabled={!state.installedSnap}
-          >
-            While connected to a local running snap this button will always be
-            displayed in order to update the snap if a change is made.
-          </Card>
-        )}
-
-        <Card title={'Reconnect'} fullWidth>
+        <Card title={'Translate transaction hash on mainnet'} fullWidth>
           <Stack direction="row" justifyContent="space-between" spacing={1}>
             <Input
               sx={{ color: darkMode ? '#fff' : '#000', fontSize: '1em' }}
