@@ -20,7 +20,7 @@ const theme = {
     small: '1.4rem',
   },
   radii: {
-    default: '24px',
+    default: '8px',
     button: '8px',
   },
   breakpoints,
@@ -80,7 +80,7 @@ export const light: DefaultTheme = {
 export const dark: DefaultTheme = {
   colors: {
     background: {
-      default: '#24272A',
+      default: '#121212',
       alternative: '#141618',
       inverse: '#FFFFFF',
     },
@@ -94,15 +94,18 @@ export const dark: DefaultTheme = {
       alternative: '#D6D9DC',
       inverse: '#24272A',
     },
+    header: {
+      default: 'ff8080',
+    },
     border: {
-      default: '#848C96',
+      default: '#2e2e2e',
     },
     primary: {
-      default: '#6F4CFF',
+      default: '#d93a4a',
       inverse: '#FFFFFF',
     },
     card: {
-      default: '#141618',
+      default: '#1c1c1c',
     },
     error: {
       default: '#d73a49',
@@ -128,6 +131,11 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${(props) => props.theme.colors.background.default};
     color: ${(props) => props.theme.colors.text.default};
+    background-image: url('/bckgr.jpeg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: ${(props) => props.theme.fonts.default};
     font-size: ${(props) => props.theme.fontSizes.text};
     margin: 0;

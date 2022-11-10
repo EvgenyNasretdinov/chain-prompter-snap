@@ -2,13 +2,8 @@ import { Button, Input, Stack } from '@mui/material';
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { MetamaskActions, MetaMaskContext } from '../hooks';
-import {
-  connectSnap,
-  getSnap,
-  getThemePreference,
-  shouldDisplayReconnectButton,
-} from '../utils';
-import { ConnectButton, InstallFlaskButton, ReconnectButton } from './Buttons';
+import { connectSnap, getSnap, getThemePreference } from '../utils';
+import { ConnectButton, InstallFlaskButton } from './Buttons';
 import { Card } from './Card';
 
 const Container = styled.div`
@@ -16,7 +11,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-  margin-top: 7.6rem;
+  // margin-top: 7.6rem;
   margin-bottom: 7.6rem;
   ${({ theme }) => theme.mediaQueries.small} {
     padding-left: 2.4rem;
@@ -27,7 +22,30 @@ const Container = styled.div`
   }
 `;
 
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6rem;
+  // margin-bottom: 7.6rem;
+  // min-width: 100vw;
+  // min-height: 100vh;
+  width: 100vw;
+  height: 75vh;
+  ${({ theme }) => theme.mediaQueries.small} {
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: auto;
+  }
+`;
+
 const Heading = styled.h1`
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
   margin-top: 0;
   margin-bottom: 2.4rem;
   text-align: center;
@@ -86,9 +104,49 @@ export const Home = () => {
 
   return (
     <Container>
-      <Heading>
-        Welcome to <Span>Chain Prompter</Span>
-      </Heading>
+      {/* <LogoWrapper>
+        <img
+          src='/ChP-logo.jpeg'
+          width='100%'
+          // height='100%'
+          loading="lazy"
+        />
+      </LogoWrapper> */}
+      <PageContainer>
+        ﹀\_︿╱﹀╲/╲︿_/︺\_︿╱▔︺\/\︹▁╱﹀▔╲︿_/︺▔╲▁︹_/
+        <Heading>
+          {/* Welcome to <Span>Chain Prompter</Span> */}
+          Welcome<Span>!</Span>
+        </Heading>
+        ﹀▔\⁄﹀\╱﹀▔︺\︹▁︿╱\╱﹀▔╲︿_︿︹_/▔﹀\_︿╱
+        <CardContainer>
+          <Card
+            title={
+              'Chain Prompter is here to help you understand blockchain transactions! 🌱'
+            }
+            fullWidth={true}
+          >
+            The idea is to make blockchain accessible for everyone. You don't
+            need to understand coding or math, to be able to interact with
+            blockchain Dapps and to know what logic is running underneath. Even
+            on a new Smart contracts, that don't have a propper documentation
+            yet, you should be able to understand a high-level concept of what
+            the code is about to do.
+            <br />
+            <br />
+            With the help of GPT-3 and our own models, we are capable of
+            translating and summarizing the programming code into human's text.
+            By parsing transaction data, we are able to know what interaction
+            with the SC is going to happen, and, when the AI can describe us the
+            programming code, we can describe the user what will happen (or
+            happend) on the onchain layer.
+            <br />
+            <br />
+            Scroll down to try it yourself! ⬇️ ⬇️ ⬇️
+          </Card>
+        </CardContainer>
+      </PageContainer>
+
       <CardContainer>
         {state.error && (
           <ErrorMessage>
@@ -97,46 +155,27 @@ export const Home = () => {
         )}
         <Card
           title={'1. Install MetaMask Flask'}
-          button={<InstallFlaskButton />}
+          button={<InstallFlaskButton disabled={state.isFlask} />}
           disabled={state.isFlask}
           fullWidth={false}
         >
           Snaps is pre-release software only available in MetaMask Flask, a
           canary distribution for developers with access to upcoming features.
         </Card>
-        {!state.installedSnap && (
-          <Card
-            title={'2. Connect and Install'}
-            button={
-              <ConnectButton
-                onClick={handleConnectClick}
-                disabled={!state.isFlask}
-              />
-            }
-            fullWidth={false}
-            disabled={!state.isFlask}
-          >
-            Get started by connecting to and installing Chain Prompter!
-          </Card>
-        )}
-        {shouldDisplayReconnectButton(state.installedSnap) && (
-          <Card
-            title={'Reconnect'}
-            button={
-              <ReconnectButton
-                onClick={handleConnectClick}
-                disabled={!state.installedSnap}
-              />
-            }
-            fullWidth
-            disabled={!state.installedSnap}
-          >
-            While connected to a local running snap this button will always be
-            displayed in order to update the snap if a change is made.
-          </Card>
-        )}
-
-        <Card title={'Reconnect'} fullWidth>
+        <Card
+          title={'2. Connect and Install'}
+          button={
+            <ConnectButton
+              onClick={handleConnectClick}
+              disabled={!state.isFlask || state.installedSnap}
+            />
+          }
+          fullWidth={false}
+          disabled={!state.isFlask || Boolean(state.installedSnap)}
+        >
+          Get started by connecting to and installing Chain Prompter snap!
+        </Card>
+        <Card title={'Translate transaction hash on mainnet'} fullWidth>
           <Stack direction="row" justifyContent="space-between" spacing={1}>
             <Input
               sx={{ color: darkMode ? '#fff' : '#000', fontSize: '1em' }}
