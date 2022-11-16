@@ -1,8 +1,8 @@
-import { Button, Input, Stack } from '@mui/material';
+// import { Button, Input, Stack } from '@mui/material';
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { MetamaskActions, MetaMaskContext } from '../hooks';
-import { connectSnap, getSnap, getThemePreference } from '../utils';
+import { connectSnap, getSnap } from '../utils';
 import { ConnectButton, InstallFlaskButton } from './Buttons';
 import { Card } from './Card';
 
@@ -86,7 +86,6 @@ const ErrorMessage = styled.div`
 
 export const Home = () => {
   const [state, dispatch] = useContext(MetaMaskContext);
-  const darkMode = getThemePreference();
   const handleConnectClick = async () => {
     try {
       await connectSnap();
@@ -173,9 +172,11 @@ export const Home = () => {
           fullWidth={false}
           disabled={!state.isFlask || Boolean(state.installedSnap)}
         >
-          Get started by connecting to and installing Chain Prompter snap!
+          Get started by connecting to and installing Chain Prompter snap! After
+          installing, try to execute a transaction and checkout Chain Prompter
+          tab in transaction insights!
         </Card>
-        <Card title={'Translate transaction hash on mainnet'} fullWidth>
+        {/* <Card title={'[SOON]Translate transaction hash on mainnet'} fullWidth>
           <Stack direction="row" justifyContent="space-between" spacing={1}>
             <Input
               sx={{ color: darkMode ? '#fff' : '#000', fontSize: '1em' }}
@@ -200,7 +201,7 @@ export const Home = () => {
               Translate
             </Button>
           </Stack>
-        </Card>
+        </Card> */}
       </CardContainer>
     </Container>
   );
